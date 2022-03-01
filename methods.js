@@ -12,9 +12,10 @@ Array.prototype.myEach = function (callbackFn) {
 
 // MAP //
 Array.prototype.myMap = function() {
-
+    
 };
 
+/** 
 // SOME //
 Array.prototype.mySome = function() {
 
@@ -61,3 +62,4 @@ Object.myKeys = function() {
 Object.myValues = function() {
 
 };
+*/
