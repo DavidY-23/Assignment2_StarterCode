@@ -66,12 +66,26 @@ console.log(testSome.mySome(even))
 Array.prototype.myReduce = function() {
 
 };
+**/
 
 // INCLUDES //
-Array.prototype.myIncludes = function() {
-
+Array.prototype.myIncludes = function(includeVal) {
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === undefined) continue;
+        //Checks if the current value in index is contains certain value
+        if (this[i] === includeVal) return true;
+    }
+    //After looping if the certain value is not in the array
+    return false;
 };
+console.log("Testing includes")
+testInclude = [1,2,3,4,5];
+console.log(testInclude.myIncludes(5));
+console.log(testInclude.myIncludes(6));
 
+
+
+/** 
 // INDEXOF //
 Array.prototype.myIndexOf = function() {
 
