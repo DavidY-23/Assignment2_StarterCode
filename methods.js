@@ -163,9 +163,25 @@ console.log(object1)
 console.log(Object.myKeys(object1))
 console.log(Object.myKeys(object2))
 
-/*
-// VALUES //
-Object.myValues = function() {
-
+Object.myValues = function(object) {
+    const valueArray = []
+    //If the object does not exist, return a blank array
+    if (object === undefined) return;
+    for (value in object) {
+        if (object[value] === undefined) continue;
+        valueArray.push(object[value]);
+    }
+    return valueArray;
 };
-*/
+
+const object3 = {
+    a: 'somestring',
+    b: 42,
+    c: false
+  };
+
+const object4 = {}
+console.log("MyKeys")
+console.log(object1)
+console.log(Object.myValues(object3))
+console.log(Object.myValues(object4))
