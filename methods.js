@@ -85,12 +85,23 @@ console.log(testInclude.myIncludes(6));
 
 
 
-/** 
 // INDEXOF //
-Array.prototype.myIndexOf = function() {
-
+Array.prototype.myIndexOf = function(value) {
+    for (let i = 0; i < this.length; i++) {
+        if (this[i] === undefined) continue;
+        //If the value is present, returns the index
+        if (this[i] === value) return i;
+    }
+    //Returns -1 if the certain value is not present
+    return -1;
 };
+console.log("Testing myIndex")
+testIndex = [1,2,3,4,5];
+console.log(testIndex.myIndexOf(5));
+console.log(testIndex.myIndexOf(6));
 
+
+/**
 // PUSH //
 Array.prototype.myPush = function(...args) {  // Use rest parameter to accept any number of input arguments
     let args_index = 0;  // Index of new element
