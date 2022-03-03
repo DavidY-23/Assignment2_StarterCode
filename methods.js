@@ -86,8 +86,10 @@ console.log(testInclude.myIncludes(6));
 
 
 // INDEXOF //
-Array.prototype.myIndexOf = function(value) {
-    for (let i = 0; i < this.length; i++) {
+Array.prototype.myIndexOf = function(value, index) {
+    //If there is no given index, defaults the index to 0.
+    if (index === undefined) index = 0
+    for (let i = index; i < this.length; i++) {
         if (this[i] === undefined) continue;
         //If the value is present, returns the index
         if (this[i] === value) return i;
@@ -96,12 +98,13 @@ Array.prototype.myIndexOf = function(value) {
     return -1;
 };
 console.log("Testing myIndex")
-testIndex = [1,2,3,4,5];
+testIndex = [1,2,3,2,5];
 console.log(testIndex.myIndexOf(5));
-console.log(testIndex.myIndexOf(6));
+console.log(testIndex.myIndexOf(2,2));
+console.log(testIndex.myIndexOf(2));
 
 
-/**
+
 // PUSH //
 Array.prototype.myPush = function(...args) {  // Use rest parameter to accept any number of input arguments
     let args_index = 0;  // Index of new element
@@ -115,10 +118,24 @@ Array.prototype.myPush = function(...args) {  // Use rest parameter to accept an
 };
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function() {
-
+Array.prototype.myLastIndexOf = function(value, index) {
+    //If there is no given index, defaults the index to length of this array - 1.
+    if (index === undefined) index = this.length-1
+    for (let i = index; i > 0; i--) {
+        if (this[i] === undefined) continue;
+        //If the value is present, returns the index
+        if (this[i] === value) return i;
+    }
+    //Returns -1 if the certain value is not present
+    return -1;
 };
 
+console.log("Testing lastIndex")
+testIndex = [1,5,3,4,5];
+console.log(testIndex.myLastIndexOf(5,2));
+console.log(testIndex.myLastIndexOf(5));
+
+/** 
 // KEYS //
 Object.myKeys = function() {
 
