@@ -135,12 +135,35 @@ testIndex = [1,5,3,4,5];
 console.log(testIndex.myLastIndexOf(5,2));
 console.log(testIndex.myLastIndexOf(5));
 
-/** 
-// KEYS //
-Object.myKeys = function() {
 
+// KEYS //
+Object.myKeys = function(object) {
+    //Creates a new array to return keys
+    const keyArray = []
+    //If the object does not exist, return a blank array
+    if (object === undefined) return;
+    //Loops through the object, adding the keys to the array
+    for (const keys in object) {
+        if (keys === undefined) continue;
+        keyArray.push(keys);
+    }
+    //Returns array
+    return keyArray;
 };
 
+const object1 = {
+    a: 'somestring',
+    b: 42,
+    c: false
+  };
+
+const object2 = {}
+console.log("MyKeys")
+console.log(object1)
+console.log(Object.myKeys(object1))
+console.log(Object.myKeys(object2))
+
+/*
 // VALUES //
 Object.myValues = function() {
 
