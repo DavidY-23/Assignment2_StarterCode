@@ -48,11 +48,7 @@ Array.prototype.myMap = function(callbackFn) {
     //Returning the array
     return mapArray;
 };
-<<<<<<< HEAD
 
-=======
-/** 
->>>>>>> main
 // SOME //
 Array.prototype.mySome = function(callbackFn) {
     for (let i = 0; i < this.length; i++) {
