@@ -34,12 +34,26 @@ Array.prototype.mySome = function(callbackFn) {
     return false;
 };
 
-/** 
-// REDUCE //
-Array.prototype.myReduce = function() {
 
+// REDUCE //
+Array.prototype.myReduce = function(callbackFn, value) {
+    let initialValue;
+    //If we do not have an initial value, iterate starts at 1 and initial value is first element of array 
+    if (value === undefined) {
+        indexofArray = 1;
+        initialValue = this[0]
+    }
+    //Sets the initial value to given value, and iterate begins at 0
+    else {
+        initialValue = value
+        indexofArray = 0;
+    }
+    for (let i = indexofArray; i < this.length; i++) {
+        if (this[i] === undefined) continue
+        initialValue = callbackFn(initialValue, this[i], i, this)
+    }
+    return initialValue;
 };
-**/
 
 // INCLUDES //
 Array.prototype.myIncludes = function(includeVal, index) {
