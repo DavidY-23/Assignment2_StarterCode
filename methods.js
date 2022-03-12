@@ -9,31 +9,6 @@ Array.prototype.myEach = function (callbackFn) {
         callbackFn(this[i], i, this);   // callbackFn is "console.log(x,i,myArray)" 
     }
 };
-// TEST //
-// Test myEach against the native forEach to ensure that myEach works as the same as forEach
-let myArray = [1,2,,4,5];   // Array called by the function
-
-// Test with 1 parameter: element
-console.log("myEach (1 parameter): element");
-myArray.myEach(x => console.log(x));   // Parameter: x => console.log(x)
-console.log("forEach (1 parameter): element");
-myArray.forEach(x => console.log(x));   // Parameter: x => console.log(x)
-
-// Test with 2 parameters: element, index
-console.log("myEach (2 parameters): element, index");
-myArray.myEach((x,i) => console.log(x,i));   // Parameter: (x,i) => console.log(x,i)
-console.log("forEach (2 parameters): element, index");
-myArray.forEach((x,i) => console.log(x,i));   // Parameter: (x,i) => console.log(x,i)
-
-// Test with 3 parameters: element, index, array
-console.log("myEach (3 parameters): element, index, array");
-myArray.myEach((x,i,myArray) => console.log(x,i,myArray));   // Parameter: (x,i,myArray) => console.log(x,i,myArray)
-console.log("forEach (3 parameters): element, index, array");
-myArray.forEach((x,i,myArray) => console.log(x,i,myArray));   // Parameter: (x,i,myArray) => console.log(x,i,myArray)
-
-// Original array is not affected
-console.log("Original array:");
-console.log(myArray);
 
 // MAP //
 Array.prototype.myMap = function(callbackFn) {
@@ -49,6 +24,7 @@ Array.prototype.myMap = function(callbackFn) {
     return mapArray;
 };
 
+
 // SOME //
 Array.prototype.mySome = function(callbackFn) {
     for (let i = 0; i < this.length; i++) {
@@ -58,9 +34,6 @@ Array.prototype.mySome = function(callbackFn) {
     return false;
 };
 
-testSome = [1,2,3,4,5]
-const even = (element) => element % 2 === 0;
-console.log(testSome.mySome(even))
 /** 
 // REDUCE //
 Array.prototype.myReduce = function() {
@@ -69,8 +42,9 @@ Array.prototype.myReduce = function() {
 **/
 
 // INCLUDES //
-Array.prototype.myIncludes = function(includeVal) {
-    for (let i = 0; i < this.length; i++) {
+Array.prototype.myIncludes = function(includeVal, index) {
+    if (index === undefined) index = 0;
+    for (let i = index; i < this.length; i++) {
         if (this[i] === undefined) continue;
         //Checks if the current value in index is contains certain value
         if (this[i] === includeVal) return true;
@@ -78,12 +52,6 @@ Array.prototype.myIncludes = function(includeVal) {
     //After looping if the certain value is not in the array
     return false;
 };
-console.log("Testing includes")
-testInclude = [1,2,3,4,5];
-console.log(testInclude.myIncludes(5));
-console.log(testInclude.myIncludes(6));
-
-
 
 // INDEXOF //
 Array.prototype.myIndexOf = function(value, index) {
@@ -97,13 +65,6 @@ Array.prototype.myIndexOf = function(value, index) {
     //Returns -1 if the certain value is not present
     return -1;
 };
-console.log("Testing myIndex")
-testIndex = [1,2,3,2,5];
-console.log(testIndex.myIndexOf(5));
-console.log(testIndex.myIndexOf(2,2));
-console.log(testIndex.myIndexOf(2));
-
-
 
 // PUSH //
 Array.prototype.myPush = function(...args) {  // Use rest parameter to accept any number of input arguments
@@ -130,12 +91,6 @@ Array.prototype.myLastIndexOf = function(value, index) {
     return -1;
 };
 
-console.log("Testing lastIndex")
-testIndex = [1,5,3,4,5];
-console.log(testIndex.myLastIndexOf(5,2));
-console.log(testIndex.myLastIndexOf(5));
-
-
 // KEYS //
 Object.myKeys = function(object) {
     //Creates a new array to return keys
@@ -151,21 +106,13 @@ Object.myKeys = function(object) {
     return keyArray;
 };
 
-const object1 = {
-    a: 'somestring',
-    b: 42,
-    c: false
-  };
-
-const object2 = {}
-console.log("MyKeys")
-console.log(object1)
-console.log(Object.myKeys(object1))
-console.log(Object.myKeys(object2))
-
-/*
-// VALUES //
-Object.myValues = function() {
-
+Object.myValues = function(object) {
+    const valueArray = []
+    //If the object does not exist, return a blank array
+    if (object === undefined) return;
+    for (value in object) {
+        if (object[value] === undefined) continue;
+        valueArray.push(object[value]);
+    }
+    return valueArray;
 };
-*/
